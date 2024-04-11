@@ -12,3 +12,5 @@ Gradle JVM: 17 (17.0.5; vendor: corretto)<br>
 * 300078744 - Mustafa Sarikaya
 * 300256085 - Daniel Kinsey
 * 300132984 - Guillaume Labasse
+
+I was responsible on Cucumber Test Cases for this deliverable
