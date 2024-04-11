@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="../../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:fragment="account-form(actionUrl, actionBtn, canEditCredentials, canEditRole)">
+  <form id="account-form" action="#" th:object="${accountData}" th:action="@{${actionUrl}}" method="post">
+
+    <table>
+      <tr>
+        <td><label for="fname" th:text="#{form.firstname}"></label></td>
+        <td>
+          <input id="fname" type="text" placeholder="Enter your first name" name="fname" th:field="*{firstname}"/>
+          <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Error</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="mnames" th:text="#{form.middlenames}"></label>
+        </td>
+        <td>
+          <input id="mnames" type="text" placeholder="Enter your middle name(s)" name="mnames" th:field="*{middlenames}"/>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="lname" th:text="#{form.lastname}"></label></td>
+        <td>
+          <input id="lname" type="text" placeholder="Enter your last name" name="lname" th:field="*{lastname}"/>
+          <div th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Error</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label th:if="${canEditCredentials}" for="userName" th:text="#{account.userName}"><b>Username</b></label>
+        </td>
+        <td>
+          <input id="userName" type="text" placeholder="Enter Username" name="userName"
+                  th:type="${canEditCredentials}? 'text' : 'hidden'"
+                  th:field="*{userName}"/>
+          <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Error</div>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="gender" th:text="#{form.gender}"></label></td>
+        <td>
+          <select id="gender" name="gender" th:field="*{gender}">
+            <option value="MALE" th:text="#{form.gender.male}">Male</option>
+            <option value="FEMALE" th:text="#{form.gender.female}">Female</option>
+            <option value="OTHER" th:text="#{form.gender.other}">Other</option>
+            <option value="RATHER_NOT_SAY" th:text="#{form.gender.rns}">Rather Not Say</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="language" th:text="#{form.language}"></label>
+        </td>
+        <td>
+          <select id="language" name="language" th:field="*{language}">
+            <option value="ENGLISH" th:text="#{form.language.en}">English</option>
+            <option value="FRENCH" th:text="#{form.language.fr}">French</option>
+            <option value="SPANISH" th:text="#{form.language.sp}">Spanish</option>
+            <option value="ARABIC" th:text="#{form.language.ar}">Arabic</option>
+            <option value="RUSSIAN" th:text="#{form.language.ru}">Russian</option>
+            <option value="PORTUGUESE" th:text="#{form.language.pg}">Portuguese</option>
+            <option value="GERMAN" th:text="#{form.language.de}">German</option>
+            <option value="JAPANESE" th:text="#{form.language.jp}">Japanese</option>
+            <option value="CHINESE" th:text="#{form.language.cn}">Chinese</option>
+            <option value="ITALIAN" th:text="#{form.language.it}">Italian</option>
+            <option value="KOREAN" th:text="#{form.language.sk}">Korean</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="role" th:if="${canEditRole}" th:text="#{account.role}"></label>
+        </td>
+        <td>
+          <select id="role" th:if="${canEditRole}" name="role" th:field="*{role}">
+            <option value="ADMINISTRATOR" th:text="#{account.role.admin}">Administrator</option>
+            <option value="ASSISTANT" th:text="#{account.role.agent}">Agent / Assistant</option>
+            <option value="PHARMACIST" th:text="#{account.role.pharmacist}">Pharmacist</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="email" th:text="#{form.email}"></label></td>
+        <td>
+          <input id="email" type="email" placeholder="Enter your Email" name="email" th:field="*{email}"/>
+          <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label th:if="${canEditCredentials}" for="passwd" th:text="#{account.password}"></label>
+        </td>
+        <td>
+          <input id="passwd" type="password" placeholder="Enter Password" name="passwd"
+                  th:type="${canEditCredentials}? 'password' : 'hidden'"
+                  th:field="*{password}"/>
+          <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label th:if="${canEditCredentials}" for="passwdconf" th:text="#{account.password.confirm}"></label>
+        </td>
+        <td>
+          <input id="passwdconf" type="password" placeholder="Repeat Password" name="passwdconf"
+                  th:type="${canEditCredentials}? 'password' : 'hidden'"
+                  th:field="*{passwordConf}"/>
+          <div th:if="${#fields.hasErrors('passwordConf')}" th:errors="*{passwordConf}">Error</div>
+        </td>
+      </tr>
+    </table>
+
+    <br><button type="submit" name="register" th:text="#{${actionBtn}}">Submit</button>
+
+    <!--<label for="fname" th:text="#{form.firstname}"></label>
+    <input id="fname"type="text" placeholder="Enter your first name"
+           name="fname" th:field="*{firstname}"/><br>
+    <div th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Error</div><br>
+
+    <label for="mnames" th:text="#{form.middlenames}"></label>
+    <input id="mnames" type="text" placeholder="Enter your middle name(s)"
+           name="mnames" th:field="*{middlenames}"/><br>
+
+    <label for="lname" th:text="#{form.lastname}"></label>
+    <input id="lname" type="text" placeholder="Enter your last name"
+           name="lname" th:field="*{lastname}"/><br>
+    <br>
+
+    <label th:if="${canEditCredentials}" for="userName" th:text="#{account.userName}"><b>Username</b></label>
+    <input id="userName" type="text" placeholder="Enter Username"
+           name="userName"
+           th:type="${canEditCredentials}? 'text' : 'hidden'"
+           th:field="*{userName}"/>
+    <div th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">Error</div><br th:if="${canEditCredentials}"><br>
+
+    <label for="gender" th:text="#{form.gender}"></label>
+    <select id="gender" name="gender" th:field="*{gender}"/>
+      <option value="MALE" th:text="#{form.gender.male}">Male</option>
+      <option value="FEMALE" th:text="#{form.gender.female}">Female</option>
+      <option value="OTHER" th:text="#{form.gender.other}">Other</option>
+      <option value="RATHER_NOT_SAY" th:text="#{form.gender.rns}">Rather Not Say</option>
+    </select><br>
+
+    <label for="language" th:text="#{form.language}"></label>
+    <select id="language" name="language" th:field="*{language}"/>
+      <option value="ENGLISH" th:text="#{form.language.en}">English</option>
+      <option value="FRENCH" th:text="#{form.language.fr}">French</option>
+      <option value="SPANISH" th:text="#{form.language.sp}">Spanish</option>
+      <option value="ARABIC" th:text="#{form.language.ar}">Arabic</option>
+      <option value="RUSSIAN" th:text="#{form.language.ru}">Russian</option>
+      <option value="PORTUGUESE" th:text="#{form.language.pg}">Portuguese</option>
+      <option value="GERMAN" th:text="#{form.language.de}">German</option>
+      <option value="JAPANESE" th:text="#{form.language.jp}">Japanese</option>
+      <option value="CHINESE" th:text="#{form.language.cn}">Chinese</option>
+      <option value="ITALIAN" th:text="#{form.language.it}">Italian</option>
+      <option value="KOREAN" th:text="#{form.language.sk}">Korean</option>
+    </select><br>
+
+    <label for="role" th:if="${canEditRole}" th:text="#{account.role}"></label>
+    <select id="role" th:if="${canEditRole}" name="role" th:field="*{role}"/>
+      <option value="ADMINISTRATOR" th:text="#{account.role.admin}">Administrator</option>
+      <option value="ASSISTANT" th:text="#{account.role.agent}">Agent / Assistant</option>
+      <option value="PHARMACIST" th:text="#{account.role.pharmacist}">Pharmacist</option>
+    </select><br th:if="${canEditRole}"><br>
+
+    <label for="email" th:text="#{form.email}"></label>
+    <input id="email" type="email" placeholder="Enter your Email" name="email"
+           th:field="*{email}"/>
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</div><br>
+
+    <label th:if="${canEditCredentials}" for="passwd" th:text="#{account.password}"></label>
+    <input id="passwd" type="password" placeholder="Enter Password"
+           name="passwd"
+           th:type="${canEditCredentials}? 'password' : 'hidden'"
+           th:field="*{password}"/>
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</div><br th:if="${canEditCredentials}">
+
+    <label th:if="${canEditCredentials}" for="passwdconf" th:text="#{account.password.confirm}"></label>
+    <input id="passwdconf" type="password" placeholder="Repeat Password"
+           name="passwdconf"
+           th:type="${canEditCredentials}? 'password' : 'hidden'"
+           th:field="*{passwordConf}"/>
+    <div th:if="${#fields.hasErrors('passwordConf')}" th:errors="*{passwordConf}">Error</div>
+
+    <br><button type="submit" name="register" th:text="#{${actionBtn}}">Submit</button>-->
+
+  </form>
+</div>
+</body>
+</html>

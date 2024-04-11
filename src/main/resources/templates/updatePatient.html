@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update Patient • UYP-PMS</title>
+    <link
+            th:rel="stylesheet"
+            th:href="@{/webjars/bootstrap/css/bootstrap.min.css} "
+    />
+    <link
+            href="../static/css/style.css"
+            rel="stylesheet"
+            th:href="@{/css/style.css}"
+    />
+</head>
+<body>
+<div class="container-fluid">
+    <h1 th:utext="#{patient.update.title}">Title</h1>
+    <div th:replace="~{fragments/header :: header}">Header</div>
+    <div th:replace="~{fragments/menu :: menu}">Menu</div>
+    <div class="content">
+        <div class="container">
+            <div th:switch="${updatePatientStatus}">
+                <div
+                        th:case="ok"
+                        class="alert alert-info alert-dismissible fade show"
+                >
+                    <span th:text="#{patient-update-ok-message}">Error</span>
+                    <button
+                            type="button"
+                            class="close"
+                            data-dismiss="alert"
+                            aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div
+                        th:case="error"
+                        class="alert alert-danger alert-dismissible fade show"
+                >
+                    <span th:text="#{patient-update-error-message}">Error</span>
+                    <button
+                            type="button"
+                            class="close"
+                            data-dismiss="alert"
+                            aria-label="Close"
+                    >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div
+                    th:replace="~{fragments/patient-form :: patient-form(actionUrl='/updatePatient', actionBtn='form.update', show='true')}"
+            ></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

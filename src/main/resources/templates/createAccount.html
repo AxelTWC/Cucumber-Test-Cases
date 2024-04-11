@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
+  <link href="../static/images/favicon.ico" rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+  <title>Create Account • UYP-PMS</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div th:replace="~{fragments/menu :: menu}">Menu</div>
+<div class="content">
+  <h1 th:utext="#{signup.title}">Title</h1>
+
+  <div th:switch="${createAccountStatus}">
+      <span th:case="ok" th:text="#{account-create-ok-message}">OK</span>
+      <span th:case="error" th:text="#{account-create-error-message}">Error</span>
+  </div>
+
+  <div th:replace="~{fragments/account-form :: account-form(actionUrl='/register', actionBtn='form.register', canEditCredentials='true', canEditRole='true')}"></div>
+</div>
+</body>
+</html>

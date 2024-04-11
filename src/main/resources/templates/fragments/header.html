@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="header" th:fragment="header">
+  <img src="../../static/images/logo.png" width="200pt" alt="(logo)" th:src="@{/images/logo.png}"/>
+  <span id="title" th:text="#{title.application}">UYP-PMS</span>
+
+  <a class="nav-link" href="../login.html" sec:authorize="!isAuthenticated" type="button"
+       th:href="@{/register}">Create Account</a>
+
+    <a class="nav-link" href="../login.html" sec:authorize="!isAuthenticated" type="button"
+       th:href="@{/login}">Sign In</a>
+
+    <a class="nav-link" href="../account.html" sec:authorize="isAuthenticated"
+       id="account-btn" type="button"
+       th:href="@{/auth/account}">View Account</a></td>
+
+    <a class="nav-link" href="logout.html" sec:authorize="isAuthenticated"
+       id="logout-btn" type="button"
+       th:href="@{/logout}">Sign Out</a></td>
+  </li>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}" />
+        <link href="../static/images/favicon.ico" rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}" />
+        <title>Prepare Prescription Fill • UYP-PMS</title>
+    </head>
+
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
+        <div th:replace="~{fragments/menu :: menu}">Menu</div>
+        <div class="content">
+            <h1 th:utext="#{preparePrescriptionFill.title}">Title</h1>
+        </div>
+    </body>
+</html>

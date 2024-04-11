@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="menu" th:fragment="menu">
+  <ul>
+    <a class="nav-link" href="../createPrescription.html" sec:authorize="hasAuthority('ASSISTANT')"
+       th:href="@{/auth/agent/createPrescription}">Create Prescription</a>
+    <a class="nav-link" href="../prepFill.html" sec:authorize="hasAuthority('ASSISTANT')"
+       th:href="@{/auth/agent/prepFill}">Prepare Prescription Fill</a>
+    <a class="nav-link" href="../verifiedPrescriptions.html" sec:authorize="hasAuthority('ASSISTANT')"
+       th:href="@{/auth/agent/verifiedPrescriptions}">Fetch Prescription Docs</a>
+    <a class="nav-link" href="../updateAgent.html" sec:authorize="hasAuthority('ASSISTANT')"
+       th:href="@{/auth/agent/updateAgent}">Update Account Info</a>
+
+    <a class="nav-link" href="../createPatient.html" sec:authorize="hasAuthority('PHARMACIST')"
+       th:href="@{/auth/pharmacist/createPatient}">Register Patient</a>
+    <a class="nav-link" href="../updatePatient.html" sec:authorize="hasAuthority('PHARMACIST')"
+       th:href="@{/auth/pharmacist/updatePatient}">Update Patient</a>
+    <a class="nav-link" href="../preparedPrescriptions.html" sec:authorize="hasAuthority('PHARMACIST')"
+       th:href="@{/auth/pharmacist/preparedPrescriptions}">Verify Prescription Fills</a>
+    <a class="nav-link" href="../generateReport.html" sec:authorize="hasAuthority('PHARMACIST')"
+       th:href="@{/auth/pharmacist/generateReport}">Generate Drug Report</a>
+
+    <a class="nav-link" href="../createAgent.html" sec:authorize="hasAuthority('ADMINISTRATOR')"
+       th:href="@{/auth/admin/createAgent}">Register Agent</a>
+    <a class="nav-link" href="../unregisterAgent.html" sec:authorize="hasAuthority('ADMINISTRATOR')"
+       th:href="@{/auth/admin/unregisterAgent}">Unregister Agent</a>
+    <a class="nav-link" href="../updateAgentAdmin.html" sec:authorize="hasAuthority('ADMINISTRATOR')"
+       th:href="@{/auth/admin/updateAgentAdmin}">Update Agent</a>
+  </ul>
+</div>
+</body>
+</html>
